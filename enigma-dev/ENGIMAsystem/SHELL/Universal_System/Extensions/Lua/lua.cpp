@@ -37,12 +37,12 @@ namespace enigma_user{
 	}
 	variant lua_execute_string(string String){
 		variant returner;
-		const char* *stringchar = String.c_str(); //Converts the std::string String into a const char
+		const char *stringchar = String.c_str(); //Converts the std::string String into a const char
 		
 		lua_State *Lua = luaL_newstate();
 		
 		luaL_openlibs(Lua);
-		luaL_dostring(Lua, String);
+		luaL_dostring(Lua, stringchar);
 		
 		lua_getglobal(Lua, "returner"); //Puts the variable returner on the stack
 		
@@ -51,7 +51,7 @@ namespace enigma_user{
 		}else if(lua_isstring(Lua, -1)){ //If returner is a string
 			returner = (string)lua_tostring(Lua, -1); //Gets the Variable returner from the stack
 		}else{
-			returner = "ERROR! UNKNOW RETURNER TYPE OR ERROR IN SCRIPT: " + file + "!"; //If there is no variable called returner or there is an error in the script or returner is not a string/integer
+			returner = "ERROR! UNKNOW RETURNER TYPE OR ERROR IN THE SCRIPT!"; //If there is no variable called returner or there is an error in the script or returner is not a string/integer
 		}
 		
 		lua_close(Lua);
