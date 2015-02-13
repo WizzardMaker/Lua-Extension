@@ -1,14 +1,17 @@
 #include "../../var4.h"
-extern "C"{
-#include <lauxlib.h>
-#include <lualib.h>
-#include <lua.h>
-}
+#include "../../dynamic_args.h"
+#include <stdarg.h>
+#include <array>
+#include <functional>
+#include <luastate.h>
 
 namespace enigma_user{
-//lua_State lua_start(void);
-//lua_State lua_stop(lua_State *Lua);
-variant lua_execute_file(const char* file);
-variant lua_execute_string(const char* String);
-//variant lua_call_function(lua_State *Lua,string file, string function, int results,variant argument0 , ...);
+variant lua_execute_file(string file);
+variant lua_execute_string(string String);
+variant lua_get_variable(string file, string variable);
+variant luaF_execute_file_int1(string filepath,const std::function<int(int)> &f);
+variant luaF_execute_file_int2(string filepath,const std::function<int(int, int)> &f,int arguments);
+variant luaF_execute_file_int3(string filepath,const std::function<int(int, int, int)> &f,int arguments);
+variant luaF_execute_file_str1(string filepath,const std::function<int(string)> &f,int arguments);
+variant luaF_execute_file_str2(string filepath,const std::function<int(string, string)> &f,int arguments);
 }
