@@ -8,7 +8,6 @@ namespace enigma_user{
 		extern void draw_text(gs_scalar x, gs_scalar y, variant str);
 		draw_text(x, y, str);
 	}
-	
 	void lua_start(string filepath){
 		state.initialize(true);
 		extern enigma::instance_t instance_create(int x,int y,int object);
@@ -75,7 +74,6 @@ namespace enigma_user{
 	}
 	void lua_stop(){
 		path = "";
-		//state.initialize(false);
 		return;
 	}
 	void lua_add_var(string name, int var){
@@ -94,72 +92,6 @@ namespace enigma_user{
 		state.set(cname, var);
 		return;
 	}
-	/*variant lua_get_variable(string file, string variable){
-		variant returner;
-		const char *filechar = file.c_str(); //Converts the std::string file into a const char
-		const char *variablechar = variable.c_str();
-		
-		lua_State *Lua = luaL_newstate();
-		luaL_openlibs(Lua); //Open the libaries
-		luaL_dofile(Lua, filechar); //Executes the Lua File
-		
-		lua_getglobal(Lua, variablechar); //Puts the variable returner on the stack
-		
-		if(lua_isnumber(Lua,-1)){ //If returner is a number
-			returner = (int)lua_tonumber(Lua, -1); //Gets the Variable returner from the stack
-		}else if(lua_isstring(Lua, -1)){ //If returner is a string
-			returner = (string)lua_tostring(Lua, -1); //Gets the Variable returner from the stack
-		}else{
-			returner = "ERROR! UNKNOW VARIABLE TYPE OR ERROR IN SCRIPT: " + file + "!"; //If there is no variable called returner or there is an error in the script or returner is not a string/integer
-		}
-		
-		lua_close(Lua);
-		return returner; //Returns the variable	
-	}
-	variant lua_execute_file(string file){
-		variant returner; //I have to use a variant to let it get any type
-		const char *filechar = file.c_str(); //Converts the std::string file into a const char
-		
-		lua_State *Lua = luaL_newstate(); //Creates a new Lua State
-		
-		luaL_openlibs(Lua); //Open the libaries
-		luaL_dofile(Lua, filechar); //Executes the Lua File
-		
-		lua_getglobal(Lua, "returner"); //Puts the variable returner on the stack
-		
-		if(lua_isnumber(Lua,-1)){ //If returner is a number
-			returner = (int)lua_tonumber(Lua, -1); //Gets the Variable returner from the stack
-		}else if(lua_isstring(Lua, -1)){ //If returner is a string
-			returner = (string)lua_tostring(Lua, -1); //Gets the Variable returner from the stack
-		}else{
-			returner = "ERROR! UNKNOW RETURNER TYPE OR ERROR IN SCRIPT: " + file + "!"; //If there is no variable called returner or there is an error in the script or returner is not a string/integer
-		}
-		
-		lua_close(Lua); //Closes Lua
-		return returner; //Returns the variable
-	}
-	variant lua_execute_string(string String){
-		variant returner;
-		const char *stringchar = String.c_str(); //Converts the std::string String into a const char
-		
-		lua_State *Lua = luaL_newstate();
-		
-		luaL_openlibs(Lua);
-		luaL_dostring(Lua, stringchar);
-		
-		lua_getglobal(Lua, "returner"); //Puts the variable returner on the stack
-		
-		if(lua_isnumber(Lua,-1)){ //If returner is a number
-			returner = (int)lua_tonumber(Lua, -1); //Gets the Variable returner from the stack
-		}else if(lua_isstring(Lua, -1)){ //If returner is a string
-			returner = (string)lua_tostring(Lua, -1); //Gets the Variable returner from the stack
-		}else{
-			returner = "ERROR! UNKNOW RETURNER TYPE OR ERROR IN THE SCRIPT!"; //If there is no variable called returner or there is an error in the script or returner is not a string/integer
-		}
-		
-		lua_close(Lua);
-		return returner;
-	}*/
 	void luaI_execute_file(){
 		if(state.getState() == nullptr){
 			show_error("Lua was not initialized!", false);
@@ -176,34 +108,4 @@ namespace enigma_user{
 		}
 		return;
 	}
-	/*variant luaF_execute_file(string filepath,const std::function<int(int)> &f){
-		//lua::State state; //Creates a new Lua State
-		state.set("cfunction", f);
-		state.doFile(filepath); //Executes the Lua File
-		return 1;
-	}
-	variant luaF_execute_file(string filepath,const std::function<int(int, int)> &f){
-		//lua::State state; //Creates a new Lua State
-		state.set("cfunction", f);
-		state.doFile(filepath); //Executes the Lua File
-		return 1;
-	}
-	variant luaF_execute_file(string filepath,const std::function<int(int,int,int)> &f){
-		//lua::State state; //Creates a new Lua State
-		state.set("cfunction", f);
-		state.doFile(filepath); //Executes the Lua File
-		return 1;
-	}
-	variant luaF_execute_file(string filepath,const std::function<int(string)> &f){
-		//lua::State state; //Creates a new Lua State
-		state.set("cfunction", f);
-		state.doFile(filepath); //Executes the Lua File
-		return 1;
-	}
-	variant luaF_execute_file(string filepath,const std::function<int(string, string)> &f){
-		//lua::State state; //Creates a new Lua State
-		state.set("cfunction", f);
-		state.doFile(filepath); //Executes the Lua File
-		return 1;
-	}*/
 }
