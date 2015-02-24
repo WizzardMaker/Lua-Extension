@@ -12,3 +12,4 @@ lua_add_var(string name, int/string var);
 -Adds a varaible to the Lua interpreter
 
 lua_execute_file();
+-Executes the file with the in lua_start given path variable.
