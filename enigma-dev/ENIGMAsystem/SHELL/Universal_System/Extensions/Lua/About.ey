@@ -4,8 +4,8 @@
 Name: Lua
 ID: Lua
 Description: Adds a Lua interpreter.
-Build-date: 02/07/2015
-Icon: inifilesystem.png
+Build-date: 03/02/2015
+Icon: luasystem.png
 
 Depends: None
 Dependencies: None
