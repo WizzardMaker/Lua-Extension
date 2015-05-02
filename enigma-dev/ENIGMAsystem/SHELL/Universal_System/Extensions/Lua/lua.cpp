@@ -49,6 +49,14 @@ namespace enigma_user{
 		extern void draw_text_ext_transformed_color(gs_scalar x, gs_scalar y, variant str, gs_scalar sep, gs_scalar wid, gs_scalar xscale, gs_scalar yscale, double rot, int c1, int c2, int c3, int c4, gs_scalar a);
 		draw_text_ext_transformed_color( x,  y,  str,  sep,  wid,  xscale,  yscale,  rot,  c1,  c2,  c3,  c4,  a);
 	}
+	unsigned int string_width(string str){
+		extern unsigned int string_width(variant str);	
+		return string_width(str);
+	}
+	unsigned int string_height(string str){
+		extern unsigned int string_height(variant str);
+		return string_height(str);
+	}
 	
 	void lua_start(string filepath){
 		state.initialize(true);
@@ -512,11 +520,9 @@ namespace enigma_user{
 		state.set( "font_get_texture_width" , &font_get_texture_width );
 		extern unsigned int font_get_texture_height(int fnt);
 		state.set( "font_get_texture_height" , &font_get_texture_height );
-		/*extern unsigned int string_width(variant str);
 		state.set( "string_width" , &string_width );
-		extern unsigned int string_height(variant str);
 		state.set( "string_height" , &string_height );
-		extern unsigned int string_width_ext(variant str, gs_scalar sep, gs_scalar wid);
+		/*extern unsigned int string_width_ext(variant str, gs_scalar sep, gs_scalar wid);
 		state.set( "string_width_ext" , &string_width_ext );
 		extern unsigned int string_height_ext(variant str, gs_scalar sep, gs_scalar wid);
 		state.set( "string_height_ext" , &string_height_ext );
@@ -2103,6 +2109,28 @@ namespace enigma_user{
 		const char *cname = name.c_str();
 		state.set(cname, var);
 		return;
+	}
+	int lua_get_int(string name){
+		if(state.getState() == nullptr){
+			show_error("Lua was not initialized!", false);
+		}
+		if(path == ""){
+			show_error("Lua path is empty!",true);
+		}
+		const char *cname = name.c_str();
+		int returner = state[cname];
+		return returner;
+	}
+	string lua_get_string(string name){
+		if(state.getState() == nullptr){
+			show_error("Lua was not initialized!", false);
+		}
+		if(path == ""){
+			show_error("Lua path is empty!",true);
+		}
+		const char *cname = name.c_str();
+		string returner = state[cname];
+		return returner;
 	}
 	void lua_execute_file(){
 		if(state.getState() == nullptr){

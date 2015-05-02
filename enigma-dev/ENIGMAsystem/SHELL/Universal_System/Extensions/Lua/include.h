@@ -13,5 +13,7 @@ void lua_start(string filepath);
 void lua_stop();
 void lua_add_var(string name, int var);
 void lua_add_var(string name, string var);
+int lua_get_int(string name);
+string lua_get_string(string name);
 void lua_execute_file();
 }
