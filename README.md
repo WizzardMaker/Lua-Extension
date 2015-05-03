@@ -12,6 +12,7 @@ You can execute the file with:
 lua_execute_file()
 
 You can add Variables to the Lua Stack with:
+
 lua_add_variable(string name, int variable)
 lua_add_variable(string name, string variable)
 
