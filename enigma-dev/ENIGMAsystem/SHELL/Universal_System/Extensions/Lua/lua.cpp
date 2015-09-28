@@ -2110,6 +2110,19 @@ namespace enigma_user{
 		state.set(cname, var);
 		return;
 	}
+	//Test
+	<template class type>
+	type lua_get_var(string name){
+		if(state.getState() == nullptr)
+			show_error("Lua was not initialized!", false);
+			
+		if(path == "")
+			show_error("Lua path is emptz!", true);
+			
+		const char *cname = name.c_str();
+		type returner = state[name];
+		return returner;
+	}
 	int lua_get_int(string name){
 		if(state.getState() == nullptr){
 			show_error("Lua was not initialized!", false);
